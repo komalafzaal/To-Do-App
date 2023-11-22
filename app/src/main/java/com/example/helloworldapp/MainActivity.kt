@@ -3,33 +3,80 @@ package com.example.helloworldapp
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.app.Activity
+import android.content.Intent
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
 
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+//    private var layoutManager: RecyclerView.LayoutManager? = null
+//    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+//
+//
+//    private lateinit var items: ArrayList<String>
+//    private lateinit var itemsAdapter: ArrayAdapter<String>
+//    private lateinit var lvItems: ListView
 
+    private lateinit var navController: NavController
 
-    private lateinit var items: ArrayList<String>
-    private lateinit var itemsAdapter: ArrayAdapter<String>
-    private lateinit var lvItems: ListView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.todo)
-        val recyclerViewItem = findViewById<View>(R.id.recyclerview) as RecyclerView
+        setContentView(R.layout.activity_main)
+
+
+        loadFragment(TaskFragment())
+        var bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.alltask -> {
+                    loadFragment(TaskFragment())
+                    true
+                }
+
+                R.id.completedtask -> {
+                    loadFragment(CompletedTaskFragment())
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+//        var circle: ImageView = findViewById(R.id.circle)
+        var plus: ImageView = findViewById(R.id.plus)
+
+
+        plus.setOnClickListener {
+            val addIntent = Intent(this.applicationContext, AddTask::class.java)
+            startActivity(addIntent)
+        }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.commit()
+    }
+
+
+
 
 
 //        lvItems = findViewById(R.id.listView)
 
-        //------------------SIMPLE LISTVIEW-------------------
+    //------------------SIMPLE LISTVIEW-------------------
 
 //        items = ArrayList()
 //        itemsAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
@@ -42,8 +89,8 @@ class MainActivity : AppCompatActivity() {
 //        items.add("Second Item")
 //        items.add("Second Item")
 
-        //-----------------CUSTOM LIST VIEW---------------
-        //We need to mae a custom adapter for custom List view Display
+    //-----------------CUSTOM LIST VIEW---------------
+    //We need to mae a custom adapter for custom List view Display
 
 //        val arrayList = ArrayList<Task>()
 //        arrayList.add(Task("Title 1", "Subtitle 1"))
@@ -64,11 +111,4 @@ class MainActivity : AppCompatActivity() {
 //        lvItems.adapter = itemsAdapter
 
 
-        //----------------------RECYCLER VIEW-------------------
-        layoutManager = LinearLayoutManager(this)
-        recyclerViewItem.layoutManager = layoutManager
-        adapter = RecyclerAdapter()
-
-        recyclerViewItem.adapter = adapter
-    }
 }
