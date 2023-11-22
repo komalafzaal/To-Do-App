@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-    private var titles = arrayOf("title","title","title","title","title","title", "title","title","title","title")
-    private var details = arrayOf("detail","detail","detail","detail","detail","detail", "detail","detail","detail","detail")
+    private var titles = arrayOf("title","title","title","title","title","title", "title","title","title","title", "title")
+    private var details = arrayOf("detail","detail","detail","detail","detail","detail", "detail","detail","detail","detail", "detail")
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
