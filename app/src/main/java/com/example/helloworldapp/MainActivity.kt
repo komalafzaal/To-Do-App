@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 //    private lateinit var itemsAdapter: ArrayAdapter<String>
 //    private lateinit var lvItems: ListView
 
-    private lateinit var navController: NavController
-
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

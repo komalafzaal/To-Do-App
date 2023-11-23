@@ -1,11 +1,13 @@
 package com.example.helloworldapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -84,6 +86,7 @@ class CompletedTaskFragment : Fragment() {
 
         val itemsAdapter = CustomAdapter(view.context, arrayList)
         lvItems.adapter = itemsAdapter
+
 
     }
 }

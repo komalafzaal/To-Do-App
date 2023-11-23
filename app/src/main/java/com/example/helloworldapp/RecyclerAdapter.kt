@@ -15,13 +15,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         "title",
         "title",
         "title",
-        "title",
-        "title",
         "title"
     )
     private var details = arrayOf(
-        "detail",
-        "detail",
         "detail",
         "detail",
         "detail",
