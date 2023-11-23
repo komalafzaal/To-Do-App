@@ -24,7 +24,6 @@
             android:src="@drawable/back_icon"
             android:padding="8dp"
             android:layout_gravity="start"
-            android:onClick="onBackButtonClick"
             android:layout_marginEnd="8dp" />
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +36,8 @@
 
     <EditText
         android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginTop="22dp"
         android:id="@+id/title_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
 
     <EditText
         android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="22dp"
         android:id="@+id/details_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,15 +62,19 @@
         app:layout_constraintBottom_toTopOf="@+id/add_btn"
 
         />
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_marginHorizontal="12dp"
         android:layout_marginBottom="12dp"
+        android:layout_marginTop="30dp"
         android:id="@+id/add_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="ADD"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/details_input"
-        android:background="@drawable/roundbutton"/>
+        android:background="@drawable/roundbutton"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

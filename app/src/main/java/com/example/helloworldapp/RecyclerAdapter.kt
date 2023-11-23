@@ -1,5 +1,6 @@
 package com.example.helloworldapp
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 
@@ -9,7 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter (private val isAllTask: Boolean): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     private var titles = arrayOf(
         "title",
         "title",
@@ -38,6 +39,18 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         holder.title.text = titles[position]
         holder.subTitle.text = details[position]
+
+        if (isAllTask) {
+            holder.itemView.findViewById<View>(R.id.edit_icon).visibility = View.VISIBLE
+            holder.itemView.findViewById<View>(R.id.complete_icon).visibility = View.VISIBLE
+            holder.itemView.findViewById<View>(R.id.delete_icon).visibility = View.VISIBLE
+
+        } else {
+            holder.itemView.findViewById<View>(R.id.edit_icon).visibility = View.GONE
+            holder.itemView.findViewById<View>(R.id.complete_icon).visibility = View.GONE
+            holder.itemView.findViewById<View>(R.id.delete_icon).visibility = View.GONE
+        }
+
     }
 
 
@@ -49,7 +62,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         var edit: ImageView = itemView.findViewById(R.id.edit_icon)
 
 
-        //      Intents --> explicit intent on edit, delete and complete button
+        // Intents --> explicit intent on edit, delete and complete button
         init {
             edit.setOnClickListener {
                 val editIntent = Intent(itemView.context, EditTask::class.java)

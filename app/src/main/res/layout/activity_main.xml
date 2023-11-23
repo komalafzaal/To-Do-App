@@ -32,25 +32,11 @@
         app:menu="@menu/my_menu" />
 
     <ImageView
-        android:id="@+id/circle"
+        android:id="@+id/add_btn"
         android:clickable="true"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/circle"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-    <ImageView
-        android:id="@+id/plus"
-        android:clickable="true"
-        android:padding="30dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/plus"
+        android:src="@drawable/floating_button"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,15 +45,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:src="@drawable/plus"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/bottomNav"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintVertical_bias="1.0" />-->
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

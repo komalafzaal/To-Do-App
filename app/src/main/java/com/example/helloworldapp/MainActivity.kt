@@ -53,8 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 //        var circle: ImageView = findViewById(R.id.circle)
-        var plus: ImageView = findViewById(R.id.plus)
-
+        var plus: ImageView = findViewById(R.id.add_btn)
 
         plus.setOnClickListener {
             val addIntent = Intent(this.applicationContext, AddTask::class.java)

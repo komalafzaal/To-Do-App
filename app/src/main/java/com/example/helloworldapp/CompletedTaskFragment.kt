@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,6 +28,9 @@ class CompletedTaskFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var lvItems: ListView
+
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,25 +71,16 @@ class CompletedTaskFragment : Fragment() {
 
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        lvItems = view.findViewById(R.id.listView)
 
-        val arrayList = ArrayList<Task>()
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
-        arrayList.add(Task("Title 1", "Subtitle 1"))
+        val recyclerViewItem1 = view.findViewById(R.id.recyclerview1) as RecyclerView
 
-        val itemsAdapter = CustomAdapter(view.context, arrayList)
-        lvItems.adapter = itemsAdapter
+        //----------------------RECYCLER VIEW-------------------
+        layoutManager = LinearLayoutManager(view.context)
+        recyclerViewItem1.layoutManager = layoutManager
+        adapter = RecyclerAdapter(false)
+
+        recyclerViewItem1.adapter = adapter
+
 
 
     }

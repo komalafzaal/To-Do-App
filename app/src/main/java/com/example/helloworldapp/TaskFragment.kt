@@ -70,7 +70,7 @@ class TaskFragment : Fragment() {
         //----------------------RECYCLER VIEW-------------------
         layoutManager = LinearLayoutManager(view.context)
         recyclerViewItem.layoutManager = layoutManager
-        adapter = RecyclerAdapter()
+        adapter = RecyclerAdapter(true)
 
         recyclerViewItem.adapter = adapter
 

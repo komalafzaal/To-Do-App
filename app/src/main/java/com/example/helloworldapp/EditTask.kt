@@ -13,8 +13,7 @@ class EditTask : AppCompatActivity() {
         var back: ImageView = findViewById(R.id.back_button)
 
         back.setOnClickListener {
-            val backIntent = Intent(this.applicationContext, MainActivity::class.java)
-            startActivity(backIntent)
+            finish()
         }
     }
 }
