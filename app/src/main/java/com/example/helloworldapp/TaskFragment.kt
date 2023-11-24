@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +26,11 @@ class TaskFragment : Fragment() {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
 
+    private val taskDB: TodoDatabase by lazy{
+        Room.databaseBuilder(requireContext(), TodoDatabase::class.java, "todoApp_DB")
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +80,14 @@ class TaskFragment : Fragment() {
 
         recyclerViewItem.adapter = adapter
 
+//        val taskList = taskDB.todoDao().getAllTodos() // Fetch data from Room
+//        (adapter as RecyclerAdapter).setTasks(taskList) // Set the fetched data to the adapter
+//
+        val taskListLiveData = taskDB.todoDao().getAllTodos() // LiveData obtained from Room
 
+        taskListLiveData.observe(viewLifecycleOwner) { taskList ->
+            // Update the RecyclerView's dataset with the new list when LiveData changes
+            (adapter as RecyclerAdapter).setTasks(taskList)
+        }
     }
 }
