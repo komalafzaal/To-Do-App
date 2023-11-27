@@ -1,14 +1,13 @@
 package com.example.helloworldapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class AddTask : AppCompatActivity() {
 
@@ -38,11 +37,17 @@ class AddTask : AppCompatActivity() {
             if (title.isNotBlank() && details.isNotBlank()) {
                 taskDB.todoDao().insert(Todo(0, title, details, false))
                 Toast.makeText(this@AddTask, "Added Successfully", Toast.LENGTH_SHORT).show()
+
+
+                val resultIntent = Intent()
+                setResult(RESULT_OK, resultIntent)
                 finish()
             } else {
                 Toast.makeText(this@AddTask, "Title and details must be provided", Toast.LENGTH_SHORT).show()
             }
+
         }
+
 
 
         backButton.setOnClickListener {

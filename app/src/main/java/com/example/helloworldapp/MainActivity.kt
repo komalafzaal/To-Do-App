@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
 //        lvItems = findViewById(R.id.listView)
 
     //------------------SIMPLE LISTVIEW-------------------

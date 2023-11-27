@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lighestPurple">#B3B7EE</color>
     <color name="purple">#9395D3</color>
+    <color name="colorPrimary">#9395D3</color>
     <color name="grey">#8B8787</color>
 
 
