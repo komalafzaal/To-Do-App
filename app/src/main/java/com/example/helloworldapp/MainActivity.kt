@@ -16,6 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        val database = TodoDatabase.getDatabase(this.applicationContext)
+//        GlobalScope.launch {
+//            database.todoDao().insert(Todo(0, "title", "details", true))
+//        }
 
         loadFragment(TaskFragment())
         var bottomNav = findViewById(R.id.bottomNav) as BottomNavigationView
@@ -53,12 +61,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 //        var circle: ImageView = findViewById(R.id.circle)
-        var plus: ImageView = findViewById(R.id.add_btn)
+        var plus: ImageView = findViewById(R.id.fab)
 
         plus.setOnClickListener {
             val addIntent = Intent(this.applicationContext, AddTask::class.java)
             startActivity(addIntent)
+
         }
+
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -66,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.commit()
     }
+
 
 
 

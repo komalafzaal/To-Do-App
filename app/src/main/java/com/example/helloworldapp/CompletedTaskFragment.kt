@@ -12,6 +12,7 @@ import android.widget.ListView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +32,14 @@ class CompletedTaskFragment : Fragment() {
 
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+
+    private val taskDB: TodoDatabase by lazy {
+        Room.databaseBuilder(requireContext(), TodoDatabase::class.java, "todoApp_DB")
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +77,10 @@ class CompletedTaskFragment : Fragment() {
             }
 
 
-
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
 
         val recyclerViewItem1 = view.findViewById(R.id.recyclerview1) as RecyclerView
 
@@ -81,7 +91,10 @@ class CompletedTaskFragment : Fragment() {
 
         recyclerViewItem1.adapter = adapter
 
-
-
+        val taskListLiveData = taskDB.todoDao().getCompletedTasks()
+        taskListLiveData.observe(viewLifecycleOwner) { taskList ->
+            (adapter as RecyclerAdapter).setTasks(taskList)
+        }
     }
+
 }
